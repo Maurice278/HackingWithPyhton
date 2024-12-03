@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<body class="text-center bg-light">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <form method="POST" class="form-register" action="/login">
+            <h1 class="h3 mb-4 font-weight-normal text-center">Please Login</h1>
+
+            <div class="form-group">
+                <label for="Username" class="form-label">Username</label>
+                <input type="text" id="Username" name="Username" class="form-control" placeholder="Enter your username" required>
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" id="Password" name="Password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block mt-4">Login</button>
+
+            
+        </form>
+
+        <!-- Flash-Nachrichten anzeigen -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+    </div>
+</div>
+</body>
+{% endblock %}

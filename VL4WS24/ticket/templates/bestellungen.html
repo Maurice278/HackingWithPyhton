@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+Ihre Bestellungen
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Ihre Bestellungen</h1>
+
+    {% if orders %}
+    <ul>
+        {% for order in orders %}
+        <!-- Der |safe-Filter deaktiviert das automatische Escaping für den Pizzatyp -->
+        <li>{{ order.pizza_type | safe }} - Menge: {{ order.quantity }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Keine Bestellungen gefunden.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('pizza_bestellen') }}" class="btn btn-primary">Pizza Bestellen</a>
+    </div>
+</div>
+{% endblock %}
